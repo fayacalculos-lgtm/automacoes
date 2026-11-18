@@ -114,3 +114,10 @@ Só cria linha; só altera linha que ele mesmo criou; nunca apaga; não cria op�
 Simula por padrão e, gravando, pergunta item a item: **agendado sem terminal, não grava nada**.
 Asaas: em 18/11/2026 a conta da chave configurada tinha 0 cobranças e 0 clientes.
 
+## Financeiro (decidido em 18/11/2026)
+**O Asaas está pausado.** A fonte do financeiro é o artefato **FINANCEIRO FAYA BARREIROS**
+(https://claude.ai/artifact/TLTNLuxv8MAJrQUy86fa4M): entradas, saídas e caixa 12% (coleção `lanc`, um documento por
+mês) e a aba **Despesas mensais** (privada de cada pessoa, `data/users/<id>/budget`), que absorveu o antigo artefato
+DESPESAS MENSAIS. Ler e lançar por ele, com a ferramenta `ArtifactData`. Script local não lê esse banco (não há
+chave de API para ele). `FINANCEIRO/` (Python, Asaas) e `FINANCEIRO/main.py notion` ficam parados até o Asaas voltar.
+

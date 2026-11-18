@@ -14,13 +14,15 @@ não faça perguntas, não espere resposta, e termine com o relatório do passo 
 - Senha, login do Meu INSS ou dado bancário que aparecer no e-mail **não** vai para arquivo nenhum que você escrever.
 - Dado de cliente fica só na pasta do pedido (OneDrive). Nunca no repositório.
 
-## 1. Enviar o que ela já aprovou
-`python CALCULOS/main.py aprovacoes` → JSON com `enviados`. Para cada enviado com `valor`:
+## 1. Enviar o que ela já aprovou e lançar no FINANCEIRO
+`python CALCULOS/main.py aprovacoes` (envia os aprovados; a verificação de hora em hora também envia) e depois
+`python CALCULOS/main.py financeiro-pendente` → JSON `a_lancar`. Para cada item de `a_lancar`:
 lance no artefato FINANCEIRO (https://claude.ai/artifact/TLTNLuxv8MAJrQUy86fa4M) com a ferramenta `ArtifactData`:
 leia `lanc/<AAAA-MM do mês atual>` (`get`), acrescente em `itens` uma chave nova `c<ID do pedido>` com
 `{tipo:"Entrada", data:"<hoje AAAA-MM-DD>", valor, cliente:"<caso>", contratante:"<parceiro>", servico, pago:false,
 origem:"rotina-calculos", criado_em:"<hoje>"}` e grave o documento inteiro com `set` e `if_version` (nunca apague nem
-altere item que já existe; se a chave já existir, não lance de novo). Sem `valor`: não lance; diga no relatório.
+altere item que já existe; se a chave já existir, não lance de novo) e então
+`python CALCULOS/main.py lancado <ID>`. Enviado sem valor não aparece em `a_lancar`: diga no relatório quais são.
 Se a ferramenta `ArtifactData` não estiver disponível nesta execução, só registre no relatório o que falta lançar.
 
 ## 2. Buscar pedidos novos

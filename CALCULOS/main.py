@@ -383,7 +383,8 @@ def cmd_aprovacoes(_a):
             print(f'{mid}: rascunho não existe mais; marcado como cancelado, nada enviado.')
             continue
         r = svc.users().drafts().send(userId='me', body={'id': v['draft_id']}).execute()
-        v.update(status='enviado', enviado_id=r.get('id'), enviado_em=datetime.now().isoformat(timespec='seconds'))
+        v.update(status='enviado', enviado_id=r.get('id'), enviado_em=datetime.now().isoformat(timespec='seconds'),
+                 financeiro='pendente' if v.get('valor') else 'sem valor')
         salvar_estado(est)
         notion = _fluxo_rt(v)
         enviados.append({'id': mid, 'de': v['de'], 'assunto': v['assunto'], 'pasta': v['pasta'],
@@ -411,6 +412,24 @@ def _fluxo_rt(v):
         return f'falhou: {str(e)[:80]}'
 
 
+def cmd_financeiro_pendente(_a):
+    """Enviados com valor ainda nao lancados no FINANCEIRO (a rotina das 7h lanca pelo ArtifactData)."""
+    est = ler_estado()
+    lista = [{'id': k, 'de': v['de'], 'assunto': v['assunto'], 'valor': v.get('valor'), 'servico': v.get('servico'),
+              'enviado_em': v.get('enviado_em')} for k, v in est.items()
+             if v.get('status') == 'enviado' and v.get('financeiro') == 'pendente']
+    print(json.dumps({'a_lancar': lista}, ensure_ascii=False, indent=1))
+
+
+def cmd_lancado(a):
+    est = ler_estado()
+    if est.get(a.id, {}).get('financeiro') != 'pendente':
+        raise SystemExit('Esse pedido não está pendente de lançamento.')
+    est[a.id]['financeiro'] = 'lançado ' + date.today().isoformat()
+    salvar_estado(est)
+    print('Marcado como lançado no FINANCEIRO:', a.id)
+
+
 def cmd_status(_a):
     est = ler_estado()
     for mid, v in sorted(est.items(), key=lambda x: x[1].get('em', '')):
@@ -431,6 +450,8 @@ def main():
     p.add_argument('--servico', help='tipo do cálculo (ex.: Liquidação, Planejamento)'); p.set_defaults(f=cmd_preparar)
     i = sub.add_parser('ignorar'); i.add_argument('id'); i.add_argument('--motivo', required=True); i.set_defaults(f=cmd_ignorar)
     sub.add_parser('aprovacoes').set_defaults(f=cmd_aprovacoes)
+    sub.add_parser('financeiro-pendente').set_defaults(f=cmd_financeiro_pendente)
+    la = sub.add_parser('lancado'); la.add_argument('id'); la.set_defaults(f=cmd_lancado)
     sub.add_parser('status').set_defaults(f=cmd_status)
     a = ap.parse_args()
     a.f(a)

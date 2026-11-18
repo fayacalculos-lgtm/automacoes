@@ -121,3 +121,14 @@ mês) e a aba **Despesas mensais** (privada de cada pessoa, `data/users/<id>/bud
 DESPESAS MENSAIS. Ler e lançar por ele, com a ferramenta `ArtifactData`. Script local não lê esse banco (não há
 chave de API para ele). `FINANCEIRO/` (Python, Asaas) e `FINANCEIRO/main.py notion` ficam parados até o Asaas voltar.
 
+## Pedidos de cálculo por e-mail (ligado em 18/11/2026)
+Todo dia às 7h o Agendador (`Faya Barreiros\Calculos por e-mail` → `deploy/rotina_calculos.bat`) roda o Claude
+Code sem tela com `/rotina-calculos` (`.claude/commands/rotina-calculos.md`). Ele lê **faya.calculos@gmail.com**,
+baixa os pedidos com anexo para `OneDrive\ADVOCACIA\CALCULOS 2026\<data - remetente - assunto>\` (01_RECEBIDO,
+02_PREPARADO = o que vai ao parceiro, 03_INTERNO), prepara pré-análise, relatório no timbrado e resposta, deixa o
+**rascunho** na conversa do parceiro e manda um resumo para a Dra. Faya. **Só envia ao parceiro depois que ela
+responde o resumo começando com OK** (`python CALCULOS/main.py aprovacoes`); aí lança no Fluxo RT e, com valor
+conhecido, no FINANCEIRO. O número oficial continua sendo o do software dela (`[CONFERIR: valor do software]`).
+Login próprio: `python CALCULOS/main.py autorizar` (token `config/token_gmail_calculos.json`). Estado em
+`SAIDA/calculos/estado.json`; logs em `logs/rotina_calculos_*.log`. Testes: `python CALCULOS/teste_calculos_email.py`.
+

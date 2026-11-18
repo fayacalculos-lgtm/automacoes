@@ -51,13 +51,14 @@ Demanda externa de cálculo (parceiro): **não há pasta definida**. `[CONFERIR]
 ## 3. Notion: onde cai cada tarefa
 
 Mapa completo em `docs/NOTION_MAPA.md` (nomes exatos das colunas, com os espaços e erros de grafia).
-**Nenhum módulo grava tarefa no Notion hoje.** Onde o POP diz "vira tarefa no Notion", a pessoa lança em
+**O módulo `INTEGRACOES/notion_escritorio.py` já sabe gravar (só criar, nunca alterar nem apagar; simulação por padrão), mas nenhuma rotina o chama ainda.** Onde o POP diz "vira tarefa no Notion", a pessoa lança em
 **Prazos/Tarefas** assim:
 
 | Campo da tarefa no POP | Coluna do banco Prazos/Tarefas |
 |---|---|
-| Título (`[PRAZO] ...`) | `Texto` |
-| Cliente | `Cliente` (e `Contratante`, que é o título da linha) |
+| Título da linha | `Contratante` (**quem contratou**: advogado parceiro ou "Particular"; não é o nome da tarefa) |
+| Descrição (`[PRAZO] ...`, fatal e interno) | `Texto` |
+| Cliente final | `Cliente` |
 | Prazo | `Data` |
 | Responsável | `Responsável` |
 | Urgência | `Prioridade` (Baixa/Média/Alta) |

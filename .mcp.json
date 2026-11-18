@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "jurisprudencias-ai": {
+      "type": "http",
+      "url": "https://jurisprudencias.ai/mcp",
+      "headers": { "Authorization": "Bearer ${JURISPRUDENCIAS_IA_API_KEY}" }
+    }
+  }
+}

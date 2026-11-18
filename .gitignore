@@ -39,3 +39,6 @@ data/
 
 # Material bruto enviado pela Faya (pecas reais, PDFs, dados de cliente) - so local
 MATERIAL_FAYA/
+
+# Banco de teses gerado do OneDrive (classificacao de pecas e JSON do LegalMail com processos reais) - so local
+banco_teses/

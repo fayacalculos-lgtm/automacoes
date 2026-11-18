@@ -77,7 +77,7 @@ Na dúvida sobre a classificação: **tratar como prazo** e pedir a confirmaçã
 
 ## Onde salva
 
-- Ato processual e carta do INSS: `PREVIDENCIARIO/<CLIENTE>/10 PREVIDENCIARIO/AAAA-MM-DD_{{tipo}}.pdf` (ver `ADAPTACAO.md` §2)
+- Ato processual e carta do INSS: `CLIENTES FAYA/01 - EM ANDAMENTO/<CLIENTE>/10 PREVIDENCIARIO/AAAA-MM-DD_{{tipo}}.pdf` (ver `ADAPTACAO.md` §2)
 - Relatório do dia: pasta `SAIDA/` do sistema
 
 ## Pendências

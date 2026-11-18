@@ -40,7 +40,7 @@ fazendo, e sem prometer o que não depende do escritório (INSS, perícia, juiz)
 
 3. **Responder.** Nunca prometer data do INSS, da perícia ou do juiz. Nunca falar valor de atrasados
    antes do cálculo conferido (POP-PREV-02). — *mesmo dia útil*
-4. **Arquivar o que chegou** na pasta do cliente (`PREVIDENCIARIO/<NOME>/10 PREVIDENCIARIO`: CNIS, laudos e carta do INSS; documento pessoal em `01 DOCUMENTOS PESSOAIS`). — *mesmo dia*
+4. **Arquivar o que chegou** na pasta do cliente (`CLIENTES FAYA/01 - EM ANDAMENTO/<NOME>/10 PREVIDENCIARIO`: CNIS, laudos e carta do INSS; documento pessoal em `01 DOCUMENTOS PESSOAIS`). — *mesmo dia*
 5. **Registrar no Notion** o que foi pedido, o que foi respondido e, se houver, a tarefa com prazo. — *mesmo dia*
 
 ## Regras

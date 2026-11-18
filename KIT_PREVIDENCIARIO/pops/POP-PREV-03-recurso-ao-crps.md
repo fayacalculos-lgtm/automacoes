@@ -41,6 +41,6 @@ Entra na controladoria no dia em que a carta chega (POP-OP-02), com alerta em D-
 
 | Item | Onde |
 |---|---|
-| Protocolo do recurso | Notion e `PREVIDENCIARIO/<NOME>/12 PROTOCOLOS` no OneDrive |
+| Protocolo do recurso | Notion e `CLIENTES FAYA/01 - EM ANDAMENTO/<NOME>/12 PROTOCOLOS` no OneDrive |
 | Prazo de acompanhamento | Controladoria (POP-OP-02) |
 | Aviso ao cliente | MSG-01, com o que esperar |

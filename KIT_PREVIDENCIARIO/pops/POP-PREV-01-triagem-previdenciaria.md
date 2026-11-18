@@ -60,7 +60,7 @@ Os nomes exatos dos modelos: `python KIT_PREVIDENCIARIO/pecas/gerar_peca.py list
 | Onde | O quê |
 |---|---|
 | Notion | Cliente e caso, com produto, classificação e modelo sugerido |
-| OneDrive | Pasta do cliente com o que chegou (`PREVIDENCIARIO/<NOME>/10 PREVIDENCIARIO`; `ADAPTACAO.md` §2) |
+| OneDrive | Pasta do cliente com o que chegou (`CLIENTES FAYA/01 - EM ANDAMENTO/<NOME>/10 PREVIDENCIARIO`; `ADAPTACAO.md` §2) |
 | Tarefa | `[TRIAGEM] Decidir caso - {{cliente}} - {{produto}}`, Dra. Faya, D+1 |
 
 ## Erros que este POP existe para evitar

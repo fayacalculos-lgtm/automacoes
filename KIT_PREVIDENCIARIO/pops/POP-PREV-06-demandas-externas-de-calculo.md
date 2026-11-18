@@ -24,10 +24,10 @@ desejado, é módulo novo a construir.
 
 ## Passo a passo
 
-1. **Entrada** — a Bárbara lança a demanda no **Fluxo RT**: parceiro, caso, tipo, **prazo processual do parceiro** (em `Data Entrega`)
+1. **Entrada** — a Bárbara lança a demanda no **Fluxo RT** (ou `criar_demanda_calculo` de `INTEGRACOES/notion_escritorio.py`): parceiro, caso, tipo, **prazo processual do parceiro** (em `Data Entrega`)
    e valor combinado no `Cliente x Empresa`/observação. — *no mesmo dia*
-2. **Pasta** separada dos clientes do escritório, com o que o parceiro enviou. `[CONFERIR]` Onde a Dra. Faya quer guardar
-   (não há pasta definida no sistema). — *mesmo dia*
+2. **Pasta** separada dos clientes do escritório, com o que o parceiro enviou: `ADVOCACIA/CALCULOS 2026/<CASO>` ou
+   `ADVOCACIA/PARCEIROS/<PARCEIRO>`, como o escritório já faz `[CONFERIR qual]`. — *mesmo dia*
 3. **Prazo**: prazo interno = prazo do parceiro menos **2 dias úteis** (nunca o último dia). Pedido **sem prazo**: perguntar
    antes de aceitar. Os dias úteis seguem `CONTROLADORIA/prazos.py` (lembrar de `FERIADOS_EXTRAS`). — *mesmo dia*
 4. **Conferir os documentos** em até 1 dia útil: sentença/acórdão (os critérios de correção e juros vêm do título),

@@ -106,7 +106,7 @@ A IA percorre as camadas na ordem: o que é eliminatório primeiro.
 
 ## Onde salva no OneDrive
 
-`PREVIDENCIARIO/<CLIENTE>/11 PECAS/` (protocolada: comprovante em `12 PROTOCOLOS`)
+`CLIENTES FAYA/01 - EM ANDAMENTO/<CLIENTE>/11 PECAS/` (protocolada: comprovante em `12 PROTOCOLOS`)
 - `MINUTA - ...docx` (versões de trabalho)
 - `PARECER IA - ...md` (parecer da primeira correção)
 - `TIPO - CLIENTE - Nº - AAAA-MM-DD.docx` e `.pdf` (versão protocolada)

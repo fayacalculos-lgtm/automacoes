@@ -15,7 +15,7 @@ quando um POP, checklist ou mensagem citar algo da coluna "No kit", vale a colun
 | Processo parado | `python CONTROLADORIA/main.py parados --dias 30` | |
 | Encerramento do caso | `python CONTROLADORIA/main.py finalizar "PASTA DO CLIENTE"` | |
 | `automacoes/comum/tramitacao.py` ("esqueleto") | `INTEGRACOES/tramitacao_integration.py` | **Tem API**: clientes, processos, movimentações, publicações, atividades e envelopes de assinatura. Envelope nasce em rascunho; **enviar** exige `confirmar=True` |
-| `automacoes/drive/criar_estrutura.py` (pasta do cliente) | `python CONTRATACAO/main.py novo ...` | Cria `PREVIDENCIARIO/<NOME>/` com as subpastas abaixo |
+| `automacoes/drive/criar_estrutura.py` (pasta do cliente) | `python CONTRATACAO/main.py novo ...` | Cria `CLIENTES FAYA/01 - EM ANDAMENTO/<NOME>/` com as subpastas abaixo |
 | `automacoes/drive/arquivar_documento.py` | à mão, nas subpastas abaixo | Não há automação equivalente |
 | `modelos/01..05` (kit de representação) | `DOCS_MODELOS/` (procuração e contratos previdenciários, declaração, termo de renúncia do JEF) | Já são os oficiais. Campos em `docs/CAMPOS_DOS_MODELOS.md`. Substabelecimento: não há modelo oficial aqui |
 | `automacoes/financeiro/regua_cobranca.py` | `python FINANCEIRO/main.py cobranca` (e `--enviar`) | Régua em `config/regras_financeiras.py`: lembrete D-3 e no dia; atraso D+1, D+5 e D+15. Ver §4 |
@@ -29,8 +29,16 @@ quando um POP, checklist ou mensagem citar algo da coluna "No kit", vale a colun
 
 ## 2. Pasta do cliente
 
-Raiz = `PASTA_CLIENTES_RAIZ` (`config/.env`; OneDrive sincronizado). Cliente previdenciário:
-`<RAIZ>/PREVIDENCIARIO/<NOME EM MAIÚSCULAS>/`. As subpastas são as de `config/escritorio.py`:
+Raiz = `PASTA_CLIENTES_RAIZ` = `C:\Users\Faya\OneDrive\ADVOCACIA` (definida em 18/11/2026). As áreas ficam em
+`config/escritorio.py`:
+
+| Área | Pasta real |
+|---|---|
+| Previdenciário (Dra. Faya) | `CLIENTES FAYA/01 - EM ANDAMENTO/<NOME>` (arquivados em `02 - ARQUIVADOS`, triagem em `03 - A VERIFICAR`) |
+| Tributário | `CLIENTE TRIBUTÁRIOS/TRIBUTARIO/<NOME>` |
+
+As pastas **que já existem** têm a organização que a equipe deu a elas: use o que estiver lá. As subpastas numeradas
+abaixo só nascem nas pastas que o `CONTRATACAO/main.py novo` criar:
 
 | Subpasta | Usar para |
 |---|---|
@@ -46,7 +54,9 @@ previdenciário. As pastas numeradas do kit (`02_CNIS_E_VINCULOS`, `04_SAUDE`, `
 `08_PROCESSO_JUDICIAL`...) **não existem aqui**; use a tabela acima. Se a Dra. Faya quiser separar CNIS, saúde e
 INSS dentro de `10 PREVIDENCIARIO`, é decisão dela `[CONFERIR]`.
 
-Demanda externa de cálculo (parceiro): **não há pasta definida**. `[CONFERIR]` onde a Dra. Faya quer guardar.
+Demanda de cálculo: a fila é o banco **Fluxo RT** do Notion (decidido em 18/11/2026). No OneDrive já existem
+`ADVOCACIA/CALCULOS 2026/<CASO>` (uma pasta por cálculo) e `ADVOCACIA/PARCEIROS/<PARCEIRO>`: guardar lá, como o
+escritório já faz `[CONFERIR qual das duas para o pedido novo de parceiro]`.
 
 ## 3. Notion: onde cai cada tarefa
 

@@ -20,7 +20,7 @@ Versão 1 — 18/11/2026
    A geração trava documento com `[CONFERIR]` ou `[PREENCHER]`: corrigir antes de mandar.
 2. **Assinatura** pela Tramitação Inteligente. Depois de revisar os `.docx`, `python CONTRATACAO/main.py enviar "PASTA DO CLIENTE"`; a integração (`INTEGRACOES/tramitacao_integration.py`) cria o envelope em **rascunho** e só envia com confirmação humana. — *mesmo dia*
 3. **Boas-vindas** com a MSG-04: canais oficiais, o que esperar e o alerta do golpe do falso advogado. — *depois da assinatura*
-4. **Pasta no OneDrive**: o `CONTRATACAO/main.py novo` já cria `PREVIDENCIARIO/<NOME>/` com as subpastas padrão (`ADAPTACAO.md` §2). — *mesmo dia*
+4. **Pasta no OneDrive**: o `CONTRATACAO/main.py novo` já cria `CLIENTES FAYA/01 - EM ANDAMENTO/<NOME>/` com as subpastas padrão (`ADAPTACAO.md` §2). — *mesmo dia*
 5. **Card no Notion** (banco **Base de Dados Clientes Law Notion**, `Área` = Previdenciário; cliente + caso): benefício, NB, DER, classificação da triagem, responsável. — *mesmo dia*
 6. **Asaas**: só se houver honorário inicial ou parcelado (`python FINANCEIRO/main.py honorarios-novos` lista contrato novo sem cobrança). Honorário de
    implantação e de êxito só se cobra quando o benefício sai (POP-PREV-07). — *mesmo dia*

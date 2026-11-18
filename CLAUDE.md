@@ -42,8 +42,8 @@ o contrato certo sai pela área (`CONTRATACAO/documentos.py`, `docs/CAMPOS_DOS_M
 | Fechou: contrato, procuração, pasta, cobrança de documentos | `CONTRATACAO/` | `novo`, `enviar`, `acompanhar`, `painel`, `exemplo` |
 | Análise e peças: relatório de CDAs, recursos, embargos, exceção, parecer previdenciário | `JUDICIAL/` | `checklist`, `peca --tipo ...`, `tipos` |
 | **Motor tributário**: relatório de passivo fiscal federal (16 seções) a partir dos PDFs do e-CAC/Regularize/CDAs; consulta de legislação; prospecção PGFN | `TRIBUTARIO/` | `passivo`, `legislacao`, `prospeccao/` |
-| Processo andando: intimações (DJEN), prazos, avisos ao cliente | `CONTROLADORIA/` | `varredura`, `avisos-cliente`, `relatorio-clientes`, `planilha`, `parados`, `finalizar` |
-| Honorários, inadimplência, fechamento (Asaas) | `FINANCEIRO/` | `cobranca`, `inadimplencia`, `fechamento`, `honorarios-novos` |
+| Processo andando: intimações (DJEN), prazos, avisos ao cliente; prazo no Notion com `varredura --notion` | `CONTROLADORIA/` | `varredura`, `avisos-cliente`, `relatorio-clientes`, `planilha`, `parados`, `finalizar` |
+| Honorários, inadimplência, fechamento (Asaas); Asaas → Notion com `notion` | `FINANCEIRO/` | `cobranca`, `inadimplencia`, `fechamento`, `honorarios-novos`, `notion` |
 
 | **Kit previdenciário** (importado do pacote `faya-barreiros-previdenciario` em 18/11/2026): 27 iniciais e 14 relatórios da Dra. Faya com `{{campos}}`, base de leis por artigo, calculadora de apoio (tempo, carência, graça, EC 103), POPs, checklists por produto e mensagens | `KIT_PREVIDENCIARIO/` | `pecas/gerar_peca.py listar\|campos\|preencher\|conferir\|docx`, `leis/buscar_lei.py --lei 8213 --art 15`, `calculos/simular.py caso.json` |
 
@@ -106,3 +106,11 @@ cliente no OneDrive**: esta (`KIT_`) é código e modelos. Regras valem as mesma
 - Agentes `previdenciario`, `calculista`, `revisor-pecas` e skill `triagem-previdenciaria` em `.claude/`.
 - **Adaptação à nossa realidade:** leia `KIT_PREVIDENCIARIO/ADAPTACAO.md` antes dos POPs: ela traduz rotinas, pastas e Notion do kit para o que existe aqui. **Não importado** (decidir): painel de demandas externas de cálculo (a fila já é o banco Fluxo RT do Notion), Pix/NF/backup do pacote de origem, agentes `atendimento`/`controladoria`/`financeiro`.
 - **Integração com o JUDICIAL:** `python JUDICIAL/main.py modelos` lista os modelos; `peca "CLIENTE" --tipo peticao-inicial-previdenciaria --modelo <slug>` entrega o modelo da Dra. Faya como referência à IA. O `gerar_peca.py docx` do kit continua sendo o caminho para pôr a minuta no timbrado e travar pendências. Não há geração duplicada: o JUDICIAL redige, o kit formata e confere.
+
+## Notion (ligado em 18/11/2026)
+`INTEGRACOES/notion_escritorio.py` grava nas bases que a Dra. Faya já tem (IDs e colunas reais em `docs/NOTION_MAPA.md`):
+Prazos/Tarefas (prazos do DJEN), Transações Financeiras (Asaas), Fluxo RT (demandas de cálculo, inclusive de parceiros).
+Só cria linha; só altera linha que ele mesmo criou; nunca apaga; não cria opção nova em coluna de seleção.
+Simula por padrão e, gravando, pergunta item a item: **agendado sem terminal, não grava nada**.
+Asaas: em 18/11/2026 a conta da chave configurada tinha 0 cobranças e 0 clientes.
+

@@ -50,6 +50,9 @@ def main():
     fe = sub.add_parser('fechamento', parents=[comum], help='fechamento mensal')
     fe.add_argument('competencia', nargs='?', help='MM/AAAA (padrao: mes anterior)')
     sub.add_parser('honorarios-novos', parents=[comum], help='contratos sem cobranca no Asaas')
+    no = sub.add_parser('notion', parents=[comum], help='Asaas -> Transacoes Financeiras do Notion')
+    no.add_argument('--dias', type=int, default=7)
+    no.add_argument('--gravar', action='store_true', help='grava (confirma item a item)')
     args = ap.parse_args()
 
     if args.cmd == 'cobranca':
@@ -64,6 +67,9 @@ def main():
     elif args.cmd == 'honorarios-novos':
         import honorarios_novos
         honorarios_novos.executar(exemplo=args.exemplo, saida=args.saida)
+    elif args.cmd == 'notion':
+        import notion_financeiro
+        notion_financeiro.executar(dias=args.dias, gravar=args.gravar, exemplo=args.exemplo)
 
 
 if __name__ == '__main__':

@@ -61,7 +61,15 @@ escritório já faz `[CONFERIR qual das duas para o pedido novo de parceiro]`.
 ## 3. Notion: onde cai cada tarefa
 
 Mapa completo em `docs/NOTION_MAPA.md` (nomes exatos das colunas, com os espaços e erros de grafia).
-**O módulo `INTEGRACOES/notion_escritorio.py` já sabe gravar (só criar, nunca alterar nem apagar; simulação por padrão), mas nenhuma rotina o chama ainda.** Onde o POP diz "vira tarefa no Notion", a pessoa lança em
+**Ligado em 18/11/2026** (simulação por padrão; gravando, pergunta item a item):
+- `python CONTROLADORIA/main.py varredura --dias 1 --notion [--gravar-notion]`: prazo do DJEN vira linha em
+  Prazos/Tarefas (`Contratante` = "Particular", `Data` = prazo interno, fatal no `Texto` com `DJEN#id`).
+- `python FINANCEIRO/main.py notion --dias 7 [--gravar]`: cobrança emitida e pagamento do Asaas viram linha em
+  Transações Financeiras (`ASAAS#id` no `Texto`); possível duplicata de lançamento manual é pulada.
+- Base: `INTEGRACOES/notion_escritorio.py` (só cria; só altera linha que ele mesmo criou). Testes:
+  `INTEGRACOES/teste_notion_escritorio.py` e `teste_notion_rotinas.py`.
+
+Onde o POP diz "vira tarefa no Notion", a pessoa lança em
 **Prazos/Tarefas** assim:
 
 | Campo da tarefa no POP | Coluna do banco Prazos/Tarefas |

@@ -50,6 +50,8 @@ def main():
     v.add_argument('--ia', action='store_true', help='IA sugere classificacao para o que ficou em revisao manual')
     v.add_argument('--ia-max', type=int, default=3, help='maximo de chamadas de IA (padrao 3)')
     v.add_argument('--exemplo', action='store_true')
+    v.add_argument('--notion', action='store_true', help='mostra os prazos que iriam para o Prazos/Tarefas do Notion')
+    v.add_argument('--gravar-notion', action='store_true', help='com --notion: grava (confirma item a item)')
 
     a = sub.add_parser('avisos-cliente', help='mensagens ao cliente sobre decisoes relevantes')
     a.add_argument('--enviar', action='store_true')
@@ -78,7 +80,8 @@ def main():
     args = ap.parse_args()
     if args.cmd == 'varredura':
         import varredura
-        varredura.executar(args.dias, args.criar_tarefas, args.exemplo, args.ia, args.ia_max)
+        varredura.executar(args.dias, args.criar_tarefas, args.exemplo, args.ia, args.ia_max,
+                           notion=args.notion, gravar_notion=args.gravar_notion)
     elif args.cmd == 'avisos-cliente':
         import avisos
         avisos.enviar(args.so) if args.enviar else avisos.gerar(args.exemplo)

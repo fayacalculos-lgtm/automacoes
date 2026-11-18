@@ -13,7 +13,8 @@ Regras:
   espacos que existem no Notion de verdade.
 - Valor de select/status/multi-select que NAO existe na coluna e IGNORADO (e avisado): o Notion criaria uma opcao
   nova e isso mexeria na estrutura da base dela. Pessoa (people) so entra se o id do usuario for informado.
-- So CRIA pagina. Nunca atualiza nem apaga registro existente.
+- So CRIA pagina. Nunca apaga. Unica alteracao possivel: `atualizar_propria`, numa linha que o proprio sistema
+  criou (confere o marcador no Texto). Linha da equipe nunca e alterada.
 - Escrita so com gravar=True (ou --gravar na linha de comando). Sem isso, mostra o que gravaria.
 
 CLI:
@@ -158,6 +159,21 @@ def criar(base, valores, gravar=False, esq=None):
         pagina = ni.criar_pagina(base_id(base), props)
         resultado.update(gravado=True, id=pagina.get('id'), url=pagina.get('url'))
     return resultado
+
+
+def atualizar_propria(base, page_id, valores, marcador, esq=None):
+    """UNICA excecao ao "so cria": altera uma linha que ESTE SISTEMA criou. Confere o `marcador` (ex.: ASAAS#id)
+    no Texto da propria linha antes de mexer; sem ele, recusa. Linha da equipe nunca e alterada."""
+    esq = esq or esquema(base)
+    pagina = ni._request('GET', f'/pages/{page_id}')
+    coluna_texto = CAMPOS[base].get('texto')
+    atual = _valor(pagina['properties'][coluna_texto]) if coluna_texto in pagina.get('properties', {}) else ''
+    if marcador not in atual:
+        return {'gravado': False, 'avisos': [f'linha {page_id} não tem o marcador {marcador}: não é do sistema, recusada']}
+    props, avisos = montar_propriedades(base, valores, esq)
+    if props:
+        ni.atualizar_pagina(page_id, props)
+    return {'gravado': bool(props), 'id': page_id, 'avisos': avisos}
 
 
 # ---------- atalhos de negocio ----------

@@ -396,7 +396,7 @@ def criar_tarefas(itens, exemplo=False):
 # 5. EXECUCAO
 # ============================================================
 
-def executar(dias=7, criar=False, exemplo=False, usar_ia=False, ia_max=3):
+def executar(dias=7, criar=False, exemplo=False, usar_ia=False, ia_max=3, notion=False, gravar_notion=False):
     print('\n=== CONTROLADORIA: VARREDURA DO DJEN ===')
     resumos, oabs = coletar_djen(dias, exemplo)
     print(f'   {len(resumos)} publicação(ões) única(s)')
@@ -456,4 +456,7 @@ def executar(dias=7, criar=False, exemplo=False, usar_ia=False, ia_max=3):
         n = len(candidatos_a_tarefa(itens))
         print(f'\n   {n} item(ns) podem virar tarefa no ADVBOX. Nada foi criado: rode com --criar-tarefas '
               '(confirmação item a item).')
+    if notion:
+        import notion_prazos
+        notion_prazos.enviar(itens, texto_da_tarefa, gravar=gravar_notion, exemplo=exemplo)
     return itens, arquivos
